@@ -11,6 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -48,29 +51,30 @@ public class PlayerCRUDTest {
     public void testPlayerCreation() {
 
         //assertion
-        assertNotNull(player);
-        assertEquals("Given name is different than you assigned",name, player.getName());
+
+        assertNotNull("Player created succesfully", player);
+        assertEquals("Given name is different than you assigned", name, player.getName());
         assertEquals("Given age is different than you assigned", age, player.getAge());
 
-        //use player service to persist object
-        persistedEntity = playerService.save(player);
-        System.out.println("player Creation" + player);
-        //assert persisted entity if it is identical
-        assertNotNull(persistedEntity);
-        assertNotNull(persistedEntity.getId());
-        assertEquals(player, persistedEntity);
 
     }
 
     @Test
-    public void testFetchPlayer(){
+    public void testFetchPlayer() {
 
         persistedEntity = playerService.save(player);
-        System.out.println("player fetch" + player);
+        assertNotNull("Player is not found", player);
         persistedEntity = playerService.find(player.getId());
-        assertNotNull("player is not created",persistedEntity);
-        assertEquals("Fetch player information. ",player, persistedEntity);
+        assertNotNull("player is not created", persistedEntity);
+        assertEquals("Fetch player information. ", player, persistedEntity);
 
+    }
+
+    @Test
+    public void testListPlayer() {
+        persistedEntity = playerService.save(player);
+        List<Player> playerArrayList = playerService.listAll();
+        assertEquals(player,playerArrayList.get(0));
     }
 
 }

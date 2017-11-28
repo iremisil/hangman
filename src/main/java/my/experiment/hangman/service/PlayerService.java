@@ -17,4 +17,12 @@ public class PlayerService {
     public Player save(Player player) {
         return playerRepository.save(player);
     }
+
+    public Player find(Long id) {
+        return playerRepository.findOne(id);
+    }
+
+    public void deleteAll() {
+        playerRepository.deleteAll();
+    }
 }

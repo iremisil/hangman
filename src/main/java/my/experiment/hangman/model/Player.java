@@ -20,6 +20,7 @@ public class Player {
     @Column(name = "name")
     private String name;
 
+    //default constructor
     public Player() {
 
     }
@@ -47,5 +48,25 @@ public class Player {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+
+        if (age != player.age) return false;
+        if (id != null ? !id.equals(player.id) : player.id != null) return false;
+        return name != null ? name.equals(player.name) : player.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + age;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }

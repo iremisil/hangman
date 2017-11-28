@@ -9,9 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @EnableAutoConfiguration
 @ComponentScan("my.experiment.hangman")
-public class PlayerApplication {
+public class HangmanApplication {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(PlayerApplication.class, args);
+        SpringApplication.run(HangmanApplication.class, args);
     }
 }

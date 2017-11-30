@@ -50,8 +50,6 @@ public class PlayerCRUDTest {
     @Test
     public void testPlayerCreation() {
 
-        //assertion
-
         assertNotNull("Player created succesfully", player);
         assertEquals("Given name is different than you assigned", name, player.getName());
         assertEquals("Given age is different than you assigned", age, player.getAge());

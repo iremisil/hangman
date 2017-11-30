@@ -4,6 +4,7 @@ import my.experiment.hangman.model.Game;
 import my.experiment.hangman.model.Player;
 import my.experiment.hangman.service.GameService;
 import my.experiment.hangman.service.PlayerService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,18 +34,25 @@ public class GameCRUDTest {
     private PlayerService playerService;
 
     private Player player;
+    private Game game;
 
     @Before
     public void setUp() throws Exception {
         player = new Player("isil", 24);
         playerService.save(player);
+        //create a new Game
+        game = new Game(player);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        gameService.deleteAll();
     }
 
     @Test
     public void testGameCreation() {
 
-        //create new Game
-        Game game = new Game(player);
+        //save game to the Service
         gameService.save(game);
 
         assertNotNull("Game can not be created", game.getId());
@@ -55,23 +63,24 @@ public class GameCRUDTest {
 
     @Test
     public void testFetchGame() {
-        Game game = new Game(player);
+
         gameService.save(game);
 
         assertNotNull("Game could not found ", game.getId());
 
         //fetches game information
-        gameService.find(game.getId());
+        Game persistedGame = gameService.find(game.getId());
+        assertEquals("Games are not persisted", game, persistedGame);
 
     }
 
     @Test
     public void testFetchAllGame() {
-        Game game = new Game(player);
-        gameService.save(game);
+
+        Game persistedgame = gameService.save(game);
 
         //fetches all the games
         List<Game> gamesArrayList = gameService.listAll();
-        assertEquals(game, gamesArrayList.get(0));
+        assertEquals("Games are not identical ", persistedgame, gamesArrayList.get(0));
     }
 }

@@ -16,7 +16,6 @@ public class Game {
 
     @Column(name = "player")
     private String player;
-    private String quesses;
 
     //default constructor
     public Game() {
@@ -26,7 +25,6 @@ public class Game {
     public Game(Player player) {
 
         this.setPlayer(player.getName());
-        this.setQuesses(getQuesses());
     }
 
 
@@ -43,14 +41,6 @@ public class Game {
         return player;
     }
 
-    public String getQuesses() {
-        return quesses;
-    }
-
-    public void setQuesses(String quesses) {
-        this.quesses = quesses;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,15 +49,13 @@ public class Game {
         Game game = (Game) o;
 
         if (id != null ? !id.equals(game.id) : game.id != null) return false;
-        if (player != null ? !player.equals(game.player) : game.player != null) return false;
-        return quesses != null ? quesses.equals(game.quesses) : game.quesses == null;
+        return player != null ? player.equals(game.player) : game.player == null;
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (player != null ? player.hashCode() : 0);
-        result = 31 * result + (quesses != null ? quesses.hashCode() : 0);
         return result;
     }
 }

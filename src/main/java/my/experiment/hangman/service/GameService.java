@@ -27,4 +27,8 @@ public class GameService {
     public List<Game> listAll() {
         return gameRepository.findAll();
     }
+
+    public void deleteAll() {
+        gameRepository.deleteAll();
+    }
 }

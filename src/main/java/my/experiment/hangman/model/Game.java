@@ -39,7 +39,8 @@ public class Game {
     private String originalWord;
 
     @Column(name = "gameStatus")
-    private GameStatus gameStatus;
+    private String gameStatus;
+    private String word;
 
 
     //default constructor
@@ -55,9 +56,9 @@ public class Game {
         this.setOriginalWord(generatedWord);
         this.setGuessedWord(generatedWord);
         this.setGuessesLeft(8);
-        this.setGameStatus(GameStatus.ONGOING);
+        this.setGameStatus(GameStatus.ONGOING.value());
         this.setGuesses(0);
-//        this.setGuessedWord(this.getGuessedWord().replaceAll("(?s).", "*"));
+        this.setGuessedWord(this.getGuessedWord().replaceAll("(?s).", "*"));
 
     }
 
@@ -65,7 +66,6 @@ public class Game {
     public Long getId() {
         return id;
     }
-
 
     public void setPlayer(String player) {
         this.player = player;
@@ -75,11 +75,11 @@ public class Game {
         return player;
     }
 
-    public GameStatus getGameStatus() {
+    public String getGameStatus() {
         return gameStatus;
     }
 
-    public Object getGuessedWord() {
+    public String getGuessedWord() {
         return guessedWord;
     }
 
@@ -103,12 +103,24 @@ public class Game {
         this.guessesLeft = guessesLeft;
     }
 
-    public void setGameStatus(GameStatus gameStatus) {
+    public void setGameStatus(String gameStatus) {
         this.gameStatus = gameStatus;
     }
 
     public void setGuesses(int guesses) {
         this.guesses = guesses;
+    }
+
+    public String getOriginalWord() {
+        return originalWord;
+    }
+
+    public void setIncorrectLetters(String incorrectLetters) {
+        this.incorrectLetters = incorrectLetters;
+    }
+
+    public int getGuesses() {
+        return guesses;
     }
 
     @Override

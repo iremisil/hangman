@@ -1,5 +1,7 @@
 package my.experiment.hangman.util;
 
+import my.experiment.hangman.model.Guess;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -31,5 +33,15 @@ public class RandomWordGenerator {
         }
         in.close();
         return wordList;
+    }
+
+    public Guess randomLetterGenerator() {
+        Random random = new Random();
+        char charAt = 0;
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+        charAt = alphabet.charAt(random.nextInt(alphabet.length()));
+
+        return new Guess(String.valueOf(charAt));
     }
 }

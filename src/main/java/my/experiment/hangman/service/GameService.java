@@ -40,10 +40,11 @@ public class GameService {
         game = this.find(id);
         String guessLetter = guess.getGuess();
 
-        if ((game.getGuessesLeft() > 0) && (game.getGameStatus().equals(GameStatus.ONGOING.value()))){
+        if ((game.getGuessesLeft() > 0) && (game.getGameStatus().equals(GameStatus.ONGOING.value()))) {
             game.setGuessedWord(quessChecker(guessLetter).toString());
             game.setGuesses(game.getGuesses() + 1);
             game.setGuessesLeft(game.getGuessesLeft() - 1);
+
 
             if (game.getGuessesLeft() == 0) {
                 game.setGameStatus(GameStatus.LOST.value());
@@ -61,7 +62,6 @@ public class GameService {
     private StringBuilder quessChecker(String guessLetter) {
         StringBuilder stringBuilder = new StringBuilder(game.getGuessedWord());
         String word = game.getOriginalWord();
-        System.out.println("word " + word);
 
         for (int i = 0; i < word.length(); i++) {
             char guessChar = guessLetter.charAt(0);
@@ -72,6 +72,13 @@ public class GameService {
             }
         }
         return stringBuilder;
+    }
+
+    public Game giveUp(Long id) {
+
+        game = this.find(id);
+        game.setGameStatus(GameStatus.LOST.value());
+        return this.save(game);
     }
 }
 

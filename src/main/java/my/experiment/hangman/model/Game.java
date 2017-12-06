@@ -87,7 +87,7 @@ public class Game {
         return guessesLeft;
     }
 
-    public Object getIncorrectLetters() {
+    public String getIncorrectLetters() {
         return incorrectLetters;
     }
 

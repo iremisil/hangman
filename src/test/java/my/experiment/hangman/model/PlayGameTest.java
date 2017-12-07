@@ -1,5 +1,6 @@
-package my.experiment.hangman;
+package my.experiment.hangman.model;
 
+import my.experiment.hangman.HangmanApplication;
 import my.experiment.hangman.model.Game;
 import my.experiment.hangman.model.GameStatus;
 import my.experiment.hangman.model.Guess;

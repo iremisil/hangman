@@ -1,7 +1,7 @@
-package my.experiment.hangman;
+package my.experiment.hangman.util;
 
+import my.experiment.hangman.HangmanApplication;
 import org.h2.util.StringUtils;
-import my.experiment.hangman.util.RandomWordGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by i00344757 on 30/11/2017.

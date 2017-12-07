@@ -1,5 +1,6 @@
 package my.experiment.hangman.controller;
 
+import my.experiment.hangman.exceptions.GameNotFoundException;
 import my.experiment.hangman.exceptions.PlayerNotFoundException;
 import my.experiment.hangman.model.Guess;
 import my.experiment.hangman.model.Player;
@@ -27,7 +28,7 @@ public class GameController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/findGame/{gameId}")
-    public ResponseEntity<Object> fetchGame(@PathVariable String gameId) throws Exception {
+    public ResponseEntity<Object> fetchGame(@PathVariable String gameId) throws GameNotFoundException {
         return new ResponseEntity<Object>(this.gameService.find(Long.valueOf(gameId)), HttpStatus.OK);
     }
 

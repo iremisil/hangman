@@ -1,5 +1,6 @@
-package my.experiment.hangman;
+package my.experiment.hangman.model;
 
+import my.experiment.hangman.HangmanApplication;
 import my.experiment.hangman.model.Player;
 import my.experiment.hangman.service.PlayerService;
 import org.junit.After;

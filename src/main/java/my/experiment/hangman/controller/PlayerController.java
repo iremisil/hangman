@@ -1,5 +1,6 @@
 package my.experiment.hangman.controller;
 
+import my.experiment.hangman.exceptions.PlayerNotFoundException;
 import my.experiment.hangman.model.Player;
 import my.experiment.hangman.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class PlayerController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{playerId}")
-    public ResponseEntity<Object> fetchPlayer(@PathVariable Long playerId) {
+    public ResponseEntity<Object> fetchPlayer(@PathVariable Long playerId) throws PlayerNotFoundException{
         return new ResponseEntity<Object>(this.playerService.find(playerId), HttpStatus.OK);
     }
 

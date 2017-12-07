@@ -1,5 +1,6 @@
 package my.experiment.hangman;
 
+import my.experiment.hangman.exceptions.PlayerNotFoundException;
 import my.experiment.hangman.model.Game;
 import my.experiment.hangman.model.GameStatus;
 import my.experiment.hangman.model.Player;
@@ -15,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -59,9 +61,9 @@ public class GameCRUDTest {
 
         assertNotNull("Game can not be created", game.getId());
         assertEquals("Game player is not matched", player.getName(), game.getPlayer());
-        assertTrue("There is not any word guessed",game.getGuessedWord() != null);
-        assertEquals("the number of guesses left should be 8",8, game.getGuessesLeft());
-        assertTrue("",StringUtils.isEmpty(game.getIncorrectLetters()));
+        assertTrue("There is not any word guessed", game.getGuessedWord() != null);
+        assertEquals("the number of guesses left should be 8", 8, game.getGuessesLeft());
+        assertTrue("", StringUtils.isEmpty(game.getIncorrectLetters()));
         assertEquals(GameStatus.ONGOING, game.getGameStatus());
 //        assertNotNull("Indicates the number of guesses made",game.getQuesses());
 

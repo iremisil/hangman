@@ -1,12 +1,15 @@
 package my.experiment.hangman.service;
 
+import my.experiment.hangman.exceptions.PlayerNotFoundException;
 import my.experiment.hangman.model.Game;
 import my.experiment.hangman.model.GameStatus;
 import my.experiment.hangman.model.Guess;
+import my.experiment.hangman.model.Player;
 import my.experiment.hangman.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,6 +20,12 @@ public class GameService {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private PlayerService playerService;
+
+    @Autowired
+    private GameService gameService;
 
     private Game game;
 
@@ -34,6 +43,15 @@ public class GameService {
 
     public void deleteAll() {
         gameRepository.deleteAll();
+    }
+
+    public Game startGame(Player player) throws PlayerNotFoundException, IOException {
+        if (this.playerService.exists(player.getId())) {
+            Game game = new Game(player);
+            return gameService.save(game);
+        } else {
+            throw new PlayerNotFoundException(game.getId());
+        }
     }
 
     public Game makeGuess(Long id, Guess guess) {

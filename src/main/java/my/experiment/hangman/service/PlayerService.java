@@ -31,4 +31,8 @@ public class PlayerService {
     public List<Player> listAll() {
         return playerRepository.findAll();
     }
+
+    public boolean exists(Long id) {
+        return playerRepository.exists(id);
+    }
 }

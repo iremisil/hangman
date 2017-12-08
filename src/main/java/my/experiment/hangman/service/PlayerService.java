@@ -1,5 +1,6 @@
 package my.experiment.hangman.service;
 
+import my.experiment.hangman.exceptions.PlayerNotFoundException;
 import my.experiment.hangman.model.Player;
 import my.experiment.hangman.repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,14 @@ public class PlayerService {
         return playerRepository.save(player);
     }
 
-    public Player find(Long id) {
-        return playerRepository.findOne(id);
+    public Player find(Long id) throws PlayerNotFoundException {
+        Player player = playerRepository.findOne(id);
+
+        if (null != player) {
+            return player;
+        } else {
+            throw new PlayerNotFoundException(id);
+        }
     }
 
     public void deleteAll() {

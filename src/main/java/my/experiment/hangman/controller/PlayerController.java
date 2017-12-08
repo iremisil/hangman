@@ -19,7 +19,7 @@ public class PlayerController {
     PlayerService playerService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> cretaPlayer(@RequestBody Player player) {
+    public ResponseEntity<Object> createPlayer(@RequestBody Player player) {
         return new ResponseEntity<Object>(this.playerService.save(player), HttpStatus.OK);
     }
 

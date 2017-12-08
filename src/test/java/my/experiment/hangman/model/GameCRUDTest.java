@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StringUtils;
@@ -28,6 +29,7 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @ContextConfiguration(classes = HangmanApplication.class)
 @RunWith(SpringRunner.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class GameCRUDTest {
 
 
@@ -65,7 +67,7 @@ public class GameCRUDTest {
         assertTrue("There is not any word guessed", game.getGuessedWord() != null);
         assertEquals("the number of guesses left should be 8", 8, game.getGuessesLeft());
         assertTrue("", StringUtils.isEmpty(game.getIncorrectLetters()));
-        assertEquals(GameStatus.ONGOING, game.getGameStatus());
+        assertEquals(GameStatus.ONGOING.value(), game.getGameStatus());
 //        assertNotNull("Indicates the number of guesses made",game.getQuesses());
 
     }

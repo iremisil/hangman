@@ -9,9 +9,9 @@ import my.experiment.hangman.model.Player;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 
 
 /**
@@ -40,8 +40,8 @@ public class PlayerCreateTest extends SpringIntegration {
         responseEntity = restTemplate.postForEntity("http://localhost:" + randomServerPort + "/" + rest, player, Player.class);
     }
 
-    @Then("^after create player all players should have id$")
-    public void after_create_player_all_players_should_have_id() throws Throwable {
+    @Then("^after request all players should have id$")
+    public void after_request_all_players_should_have_id() throws Throwable {
         assertThat(responseEntity.getBody().getId(), is(notNullValue()));
     }
 

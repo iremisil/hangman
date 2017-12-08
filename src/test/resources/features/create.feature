@@ -5,5 +5,4 @@ Feature: Create single player
       | irem | 25 |
     When perform POST request to "player"
     Then after request all players should have id
-    Then after request http status should be 200
-
+    Then after create player status should be 200
